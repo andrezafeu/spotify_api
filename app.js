@@ -15,13 +15,32 @@ $(document).on("ready", function () {
 				type: 'artist'
 			},
 
-			success: function() {
-				console.log("Success")
+			success: function(data) {
+				console.log("Success");
+				console.log(data.artists.items[0].name);
+				console.log(data.artists.items[0].images);
+				displayInfo(data.artists.items);
+				console.log(data.artists.items[0].images[0].url);
+
 			},
 			error: function() {
-				console.log("Error")
-				console.log(error.responseJSON)
+				console.log("Error");
+				console.log(error.responseJSON);
 			}
 		});
 	});
+
 });
+
+function displayInfo (artists) {
+  artists.forEach(function (oneArtist) {
+    var html = `
+      <li>
+        <p>Name: ${oneArtist.name}</p>
+        <img src="${oneArtist.images[0].url}">
+      </li>`;
+    $(".js-artist-list").append(html);
+  });
+}
+
+
