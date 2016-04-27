@@ -35,7 +35,7 @@ $(document).on("ready", function () {
 		event.preventDefault();
 
 		alert("Album click");
-
+		$('#myModal').modal('show') 
 		var searchedArtist = $(event.currentTarget).data("artist-id");
 
 		console.log(searchedArtist);
