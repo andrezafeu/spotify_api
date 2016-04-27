@@ -3,6 +3,8 @@ $(document).on("ready", function () {
 	$(".js-search").on("click", function (event) {
 		event.preventDefault();
 
+		$('.js-artist-list').empty();
+
 		var searchedArtist = $('#query').val();
 		console.log(searchedArtist);
 
