@@ -46,9 +46,8 @@ $(".js-search-track").on("click", function (event) {
 
 			success: function(data) {
 				console.log("Success");
-				console.log(data)
+				// console.log(data)
 				displayTrack(data.tracks.items);
-				// displayTrackArtist(data.tracks.items);
 			},
 			error: function(error) {
 				console.log("Error");
@@ -105,7 +104,7 @@ function displayInfo (artists) {
 
 function displayTrack (tracks) {
 	tracks.forEach(function (oneTrack) {
-		console.log(tracks)
+		// console.log(tracks)
 		// console.log(oneTrack.name)
 		// console.log(oneTrack.artists[0].name);
 		var html_track = `
@@ -115,6 +114,9 @@ function displayTrack (tracks) {
       	$(".js-track-list").append(html_track);
       displayTrackArtist(oneTrack);
     })
+    console.log(tracks[0].artists)
+    $(".js-player-title").html(tracks[0].name);
+    $(".js-player-artist").html(tracks[0].artists[0].name);
 }
 
 function displayTrackArtist (track_artists) {
