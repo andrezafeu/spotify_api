@@ -19,11 +19,36 @@ $(document).on("ready", function () {
 			success: function(data) {
 				console.log("Success");
 				console.log(data)
-				// console.log(data.artists.items[0].name);
-				// console.log(data.artists.items[0].images);
 				displayInfo(data.artists.items);
-				// console.log(data.artists.items[0].images[0].url);
+			},
+			error: function(error) {
+				console.log("Error");
+				console.log(error.responseJSON);
+			}
+		});
+	});
 
+$(".js-search-track").on("click", function (event) {
+		event.preventDefault();
+
+		$('.js-track-list').empty();
+
+		var searchedTrack = $('#query_track').val();
+		console.log(searchedTrack);
+
+		$.ajax({
+			type: "get",
+			url: "https://api.spotify.com/v1/search",
+			data: {
+				q: searchedTrack,
+				type: 'track'
+			},
+
+			success: function(data) {
+				console.log("Success");
+				console.log(data)
+				displayTrack(data.tracks.items);
+				// displayTrackArtist(data.tracks.items);
 			},
 			error: function(error) {
 				console.log("Error");
@@ -76,6 +101,30 @@ function displayInfo (artists) {
       </li>`;
     $(".js-artist-list").append(html);
   });
+}
+
+function displayTrack (tracks) {
+	tracks.forEach(function (oneTrack) {
+		console.log(tracks)
+		// console.log(oneTrack.name)
+		// console.log(oneTrack.artists[0].name);
+		var html_track = `
+			<li>
+        		<p>Name: ${oneTrack.name}</p>
+      		</li>`;
+      	$(".js-track-list").append(html_track);
+      displayTrackArtist(oneTrack);
+    })
+}
+
+function displayTrackArtist (track_artists) {
+	track_artists.artists.forEach(function (oneTrackArtist) {
+		var html_track_artist = `
+			<li>
+        		<p>Name: ${oneTrackArtist.name}</p>
+      		</li>`;
+      	$(".js-track-list").append(html_track_artist);
+	})
 }
 
 function showAlbums (albums) {
