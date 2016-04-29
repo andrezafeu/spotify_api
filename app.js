@@ -124,7 +124,14 @@ function displayTrack (tracks) {
 			$('.js-player').trigger('pause');
 			$(".btn-play").prop('class', "btn-play disabled")
 		}
-		// $('.js-artist-list').empty();
+		function updateTime () {
+			var current = $('.js-player').prop('currentTime');
+			// console.debug('Current time: ' + current);
+			$('progress').prop('value', current);
+		}
+		$('.js-player').on('timeupdate', updateTime);
+
+		
 	});
 
 }
@@ -148,3 +155,4 @@ function showAlbums (albums) {
 	});
 
 }
+
