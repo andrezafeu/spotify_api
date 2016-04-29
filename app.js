@@ -117,9 +117,16 @@ function displayTrack (tracks) {
 	var soundTrack = tracks[0].preview_url
 	$(".btn-play").on("click", function () {
 		$('.js-player').prop('src', soundTrack)
-		$('.js-player').trigger('play');
-		$(".btn-play").prop('class', "btn-play playing")
-	});	
+		if ($('.btn-play').prop('class') === "btn-play disabled") {
+			$('.js-player').trigger('play');
+			$(".btn-play").prop('class', "btn-play playing")
+		} else {
+			$('.js-player').trigger('pause');
+			$(".btn-play").prop('class', "btn-play disabled")
+		}
+		// $('.js-artist-list').empty();
+	});
+
 }
 
 function displayTrackArtist (track_artists) {
