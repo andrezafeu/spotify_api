@@ -6,7 +6,7 @@ $(document).on("ready", function () {
 		$('.js-artist-list').empty();
 
 		var searchedArtist = $('#query').val();
-		console.log(searchedArtist);
+		// console.log(searchedArtist);
 
 		$.ajax({
 			type: "get",
@@ -34,7 +34,7 @@ $(".js-search-track").on("click", function (event) {
 		$('.js-track-list').empty();
 
 		var searchedTrack = $('#query_track').val();
-		console.log(searchedTrack);
+		// console.log(searchedTrack);
 
 		$.ajax({
 			type: "get",
@@ -78,9 +78,6 @@ $(".js-search-track").on("click", function (event) {
 				console.log("Success");
 				console.log(data);
 				showAlbums(data.items);
-				// showAlbums(data.albums.items[0].name);
-				// console.log(data.artists.items[0].name);
-				// shohwAlbum(data.artists.items);
 			},
 			error: function(error) {
 				console.log("Error");
@@ -104,9 +101,6 @@ function displayInfo (artists) {
 
 function displayTrack (tracks) {
 	tracks.forEach(function (oneTrack) {
-		// console.log(tracks)
-		// console.log(oneTrack.name)
-		// console.log(oneTrack.artists[0].name);
 		var html_track = `
 			<li>
         		<p>Name: ${oneTrack.name}</p>
@@ -114,9 +108,11 @@ function displayTrack (tracks) {
       	$(".js-track-list").append(html_track);
       displayTrackArtist(oneTrack);
     })
-    console.log(tracks[0].artists)
     $(".js-player-title").html(tracks[0].name);
     $(".js-player-artist").html(tracks[0].artists[0].name);
+    console.log(tracks[0].album.images[0].url)
+	var trackArtistImage = `<img src="${tracks[0].album.images[0].url}">;`
+	$(".js-player-image").html(trackArtistImage);
 }
 
 function displayTrackArtist (track_artists) {
@@ -126,7 +122,7 @@ function displayTrackArtist (track_artists) {
         		<p>Name: ${oneTrackArtist.name}</p>
       		</li>`;
       	$(".js-track-list").append(html_track_artist);
-	})
+    })
 }
 
 function showAlbums (albums) {
