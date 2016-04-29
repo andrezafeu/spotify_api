@@ -113,6 +113,13 @@ function displayTrack (tracks) {
     console.log(tracks[0].album.images[0].url)
 	var trackArtistImage = `<img src="${tracks[0].album.images[0].url}">;`
 	$(".js-player-image").html(trackArtistImage);
+	console.log(tracks[0].preview_url)
+	var soundTrack = tracks[0].preview_url
+	$(".btn-play").on("click", function () {
+		$('.js-player').prop('src', soundTrack)
+		$('.js-player').trigger('play');
+		$(".btn-play").prop('class', "btn-play playing")
+	});	
 }
 
 function displayTrackArtist (track_artists) {
@@ -132,4 +139,5 @@ function showAlbums (albums) {
 		`;
 		$(".js-albums-list").append(html);
 	});
+
 }
