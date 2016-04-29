@@ -1,6 +1,6 @@
 $(document).on("ready", function () {
 
-	$(".js-search").on("click", function (event) {
+	$(".js-search-artist").on("click", function (event) {
 		event.preventDefault();
 
 		$('.js-artist-list').empty();
