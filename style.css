@@ -153,3 +153,13 @@ progress::-webkit-progress-value {
 progress::-moz-progress-bar {
   background-color: #45a800;
 }
+
+/*CUSTOMIZED CSS*/
+
+li {
+  list-style: none;
+}
+
+img {
+  max-height: 300px;
+}

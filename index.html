@@ -9,35 +9,36 @@
     <script src="app.js"></script>
 </head>
 <body>
-
-	<form>
+  <div class="container">
+  <br><br>
+    <div class="row col-lg-6">
+      <form>
       	<label>Artist</label>
         <input type="text" name="search_artist_input" id="query">
        	<button class="js-search-artist">
         	Search Artist
         </button>
-  </form>
+      </form>
 
-
-  <ul class="js-artist-list"></ul>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Albums</h4>
+          </div>
+        <div class="modal-body">
         <ul class="js-albums-list"></ul>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
+</div>
+<div class="row col-lg-6">
 
   <form>
         <label>Track</label>
@@ -46,6 +47,10 @@
           Search Track
         </button>
   </form>
+
+</div>
+
+<br><br><br><br><br>
 
 <div class="widget">
     <div class="header">
@@ -61,13 +66,13 @@
       </div>
     </div>
     </div>
-    <div class="cover js-player-image">
-    </div>
-
+    <div class="cover js-player-image"></div>
     <audio class="js-player" src=""></audio>
   </div>
-
-  <ul class="js-track-list"></ul>
+  <div class="row">
+    <ul class="js-artist-list"></ul>
+    <ul class="js-track-list"></ul>
+  </div>
 
 </body>
 </html>

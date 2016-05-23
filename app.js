@@ -60,7 +60,9 @@ $(".js-search-track").on("click", function (event) {
 	$(".js-artist-list").on("click", ".js-albums", function (event) {
 		event.preventDefault();
 
-		alert("Album click");
+		$('.js-albums-list').empty();
+
+
 		$('#myModal').modal('show') 
 		var searchedArtist = $(event.currentTarget).data("artist-id");
 
@@ -91,10 +93,13 @@ $(".js-search-track").on("click", function (event) {
 function displayInfo (artists) {
   artists.forEach(function (oneArtist) {
     var html = `
-      <li>
-        <p>Name: ${oneArtist.name}</p>
-        <img src="${oneArtist.images[0].url}" class="js-albums" data-artist-id="${oneArtist.id}">
-      </li>`;
+    	<li>
+    		<div class="col-lg-4">
+		        <p><b>${oneArtist.name}</b></p>
+		        <img src="${oneArtist.images[0].url}" class="js-albums" data-artist-id="${oneArtist.id}">
+      		</div>
+      	</li>
+      	`;
     $(".js-artist-list").append(html);
   });
 }
@@ -149,7 +154,7 @@ function displayTrackArtist (track_artists) {
 function showAlbums (albums) {
 	albums.forEach(function (oneAlbum) {
 		var html = `
-		<li>Album: ${oneAlbum.name}</li>
+		<li>${oneAlbum.name}</li>
 		`;
 		$(".js-albums-list").append(html);
 	});
