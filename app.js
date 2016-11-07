@@ -3,10 +3,10 @@ $(document).on("ready", function () {
 	$(".js-search-artist").on("click", function (event) {
 		event.preventDefault();
 
+		$('.js-track-list').empty();
 		$('.js-artist-list').empty();
 
 		var searchedArtist = $('#query').val();
-		// console.log(searchedArtist);
 
 		$.ajax({
 			type: "get",
@@ -17,8 +17,7 @@ $(document).on("ready", function () {
 			},
 
 			success: function(data) {
-				console.log("Success");
-				console.log(data)
+				console.log("user input", data)
 				displayInfo(data.artists.items);
 			},
 			error: function(error) {
@@ -28,13 +27,13 @@ $(document).on("ready", function () {
 		});
 	});
 
-$(".js-search-track").on("click", function (event) {
+	$(".js-search-track").on("click", function (event) {
 		event.preventDefault();
 
+		$('.js-artist-list').empty();
 		$('.js-track-list').empty();
 
 		var searchedTrack = $('#query_track').val();
-		// console.log(searchedTrack);
 
 		$.ajax({
 			type: "get",
@@ -45,8 +44,7 @@ $(".js-search-track").on("click", function (event) {
 			},
 
 			success: function(data) {
-				console.log("Success");
-				// console.log(data)
+				console.log("data", data)
 				displayTrack(data.tracks.items);
 			},
 			error: function(error) {
@@ -108,8 +106,9 @@ function displayTrack (tracks) {
 	tracks.forEach(function (oneTrack) {
 		var html_track = `
 			<li>
-        		<p>Name: ${oneTrack.name}</p>
+        		<p>Track: ${oneTrack.name}</p>
       		</li>`;
+      		console.log("oneTrack", oneTrack)
       	$(".js-track-list").append(html_track);
       displayTrackArtist(oneTrack);
     })
@@ -144,9 +143,8 @@ function displayTrack (tracks) {
 function displayTrackArtist (track_artists) {
 	track_artists.artists.forEach(function (oneTrackArtist) {
 		var html_track_artist = `
-			<li>
-        		<p>Name: ${oneTrackArtist.name}</p>
-      		</li>`;
+			<li><p>Artist: ${oneTrackArtist.name}</p></li>
+      	`;
       	$(".js-track-list").append(html_track_artist);
     })
 }
@@ -154,10 +152,9 @@ function displayTrackArtist (track_artists) {
 function showAlbums (albums) {
 	albums.forEach(function (oneAlbum) {
 		var html = `
-		<li>${oneAlbum.name}</li>
+			<li>${oneAlbum.name}</li>
 		`;
 		$(".js-albums-list").append(html);
 	});
 
 }
-
